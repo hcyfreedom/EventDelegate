@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--移入li变红，移出变白，点击input 添加一个li-->
+<input type="button" name="" id="btn" value="添加"/>
+<ul id="ul1">
+    <li>111>/li>
+    <li>222</li>
+    <li>333</li>
+    <li>444</li>
+</ul>
+
+<script>
+    window.onload = function () {
+        var oBtn = document.getElementById("btn");
+        var oUl = document.getElementById("ul1");
+        var aLi = oUl.getElementsByTagName('li');
+        var num = 4;                        //事件委托，添加的子元素也有事件
+        oUl.onmouseover = function (e) {
+            var e = e || window.event;
+            var target = e.target || e.srcElement;
+            if(target.nodeName.toLowerCase() == "li"){
+                target.style.backgroundColor = "red";
+            }
+        }
+        oUl.onmouseout = function (e) {
+            var e = e || window.event;
+            var target = e.target || e.srcElement;
+            if(target.nodeName.toLowerCase() == "li"){
+                target.style.backgroundColor = "white";
+            }
+        }
+
+        //添加新的节点
+        oBtn.onclick = function () {
+            num++;
+            var oLi = document.createElement('li');
+            oLi.innerHTML = 111*num;
+            oUl.appendChild(oLi)
+        }
+    }
+</script>
+
+</body>
+</html>
